@@ -8,7 +8,7 @@ PAYable IPG JS helps to integrate the payment gateway of your website.
 
 #### The Payable Payment Gateway Integration
 
-First, You need to get the Merchant Key and Merchant Token to integrate with the IPG SDK from Payable.
+First, You need to get the Merchant Key and Merchant Token to integrate with the IPG JS from Payable.
 
 - Merchant Key:
 - Merchant Token:
@@ -151,7 +151,7 @@ You can get the error details from the `payable.onError`. Error will be field va
 
 <b>3.3.</b> Listening to Payable Payment Gateway
 
-Once you connect to Payable Payment Gateway, You can listen to sdk with `payable.onCompleted`(The payment can be successful or failed) and `payable.onDismissed`(The user closes the payment without completing). As soon as the payment is processed, You can get the payment process status. `payable.onCompleted` .
+Once you connect to Payable Payment Gateway, You can listen to payment gateway with `payable.onCompleted`(The payment can be successful or failed) and `payable.onDismissed`(The user closes the payment without completing). As soon as the payment is processed, You can get the payment process status. `payable.onCompleted` .
 
 ```javascript
    payable.onCompleted = function onCompleted(data) {
