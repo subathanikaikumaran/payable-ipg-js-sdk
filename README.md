@@ -1,6 +1,6 @@
-### PAYable IPG JS SDK
+### PAYable IPG JS
 
-PAYable IPG JS SDK helps to integrate the payment gateway of your website.
+PAYable IPG JS helps to integrate the payment gateway of your website.
 
 <hr>
 
@@ -19,14 +19,20 @@ You can simply use an HTML Form to submit the below params to Payable Payment Ga
 
 ### Implementation
 
-<b>1.</b> Install [Payable IPG JS SDK](https://www.npmjs.com/package/@payable/ipg-js) package in your project.
+<b>1.</b> Install [Payable IPG JS](https://www.npmjs.com/package/@payable/ipg-js) package in your project.
 
-Install:
+<b>1.1. </b>Run the following command inside your project.
 
-```react
+```javascript
 npm i @payable/ipg-js
 ```
-<b>2.</b> Create your checkout form with basic required fields.
+<b>1.2. </b>Import the Payable IPG JS package.
+
+```javascript
+import payable from '@payable/ipg-js';
+```
+
+<b>2.</b> Create your payment request with basic required fields.
 
 <b>2.1.</b> Required Form Parameters:
 
@@ -75,59 +81,54 @@ Format:
 
 `UPPERCASE(SHA512[<merchant_key>|<invoice_id>|<amount>|<currency_code>|UPPERCASE(SHA512[<merchant_Token>])])`
 
-<b>2.3.</b> Sampe form :
-````html
-<form method="post">
-    <!-- Replace your merchant_key, notify_url, return_url, cancel_url and check_value -->
-    <input type="hidden" name="notify_url" id="notify_url" value="https://yoursite.com/payment/nortify" />
-    <input type="hidden" name="return_url" id="return_url" value="https://yoursite.com/payment/return" />
-    <input type="hidden" name="cancel_url" id="cancel_url" value="https://yoursite.com/payment/cancel" />
-    <input type="hidden" name="merchant_key" id="merchant_key" value="D75XXXXXXXXX" />
-    <input type="hidden" name="check_value" id="check_value" value="A8907A75XXXXXXXXXXXXXXXXXXX" />    
-    <input type="hidden" name="custom_1" id="custom_1" value="test value" />
-    <input type="hidden" name="custom_2" id="custom_2" value="test value" />
-    <h3>Payment Details</h3>
-    <input type="text" name="invoice_id" id="invoice_id" value="INV0002301" />
-    <input type="text" name="order_description" id="order_description" value="Payment for abc Fashion" />
-    <input type="text" name="amount" id="amount" value="999.12" />
-    <input type="hidden" name="currency_code" id="currency_code" value="LKR" />
-    <h3>Customer Details</h3>
-    <input type="text" name="customer_first_name" id="customer_first_name" value="Shakthi" />
-    <input type="text" name="customer_last_name" id="customer_last_name" value="Elon" />
-    <input type="text" name="customer_mobile_phone" id="customer_mobile_phone" value="94XXXXXXXXX" />
-    <input type="text" name="customer_phone" id="customer_phone" value="94XXXXXXXXX" />
-    <input type="email" name="customer_email" id="customer_email" value="testbillmail@gmail.com" />
-    <h3>Billing Details</h3>
-    <input type="text" name="billing_address_street" id="billing_address_street" value="154" />
-    <input type="text" name="billing_address_street2" id="billing_address_street2" value="Main Road" />
-    <input type="text" name="billing_address_company" id="billing_address_company" value="Test" />
-    <input type="text" name="billing_address_city" id="billing_address_city" value="Vavuniya" />
-    <input type="text" name="billing_address_province" id="billing_address_province" value="North Province" />
-    <input type="hidden" name="billing_address_country" id="billing_address_country" value="LKA" />
-    <input type="text" name="billing_address_postcode" id="billing_address_postcode" value="43000" />
-    <h3>Shipping Details</h3>
-    <input type="text" name="shipping_contact_first_name" id="shipping_contact_first_name" value="Kumar" />
-    <input type="text" name="shipping_contact_last_name" id="shipping_contact_last_name" value="Shiva" />
-    <input type="text" name="shipping_contact_phone" id="shipping_contact_phone" value="94XXXXXXXXX" />
-    <input type="text" name="shipping_contact_mobile" id="shipping_contact_mobile" value="94XXXXXXXXX" />
-    <input type="email" name="shipping_contact_email" id="shipping_contact_email" value="testshipmail@gmail.com" />
-    <input type="text" name="shipping_address_company" id="shipping_address_company" value="Payable" />
-    <input type="text" name="shipping_address_street" id="shipping_address_street" value="Main Street" />
-    <input type="text" name="shipping_address_street2" id="shipping_address_street2" value="Temple Road" />
-    <input type="text" name="shipping_address_city" id="shipping_address_city" value="Colombo" />
-    <input type="text" name="shipping_address_province" id="shipping_address_province" value="western province" />
-    <input type="hidden" name="shipping_address_country" id="shipping_address_country" value="LKA" />
-    <input type="text" name="shipping_address_postcode" id="shipping_address_postcode" value="40000" />
-    <input type="submit" value="PAY Now">
-</form>
+<b>2.3.</b> Sampe Code :
+````javascript
+const payment = {
+    cancel_url: "https://yoursite.com/payment/cancel",
+    return_url: "https://yoursite.com/payment/return",
+    notify_url: "https://yoursite.com/payment/nortify",
+    merchant_key: "D7XXXXXXXXX",               
+    check_value: "C6FXXXXXXXXXXXXXXXXXXXXXX",
+    amount: "59.91",
+    invoice_id: "INVvw5EA0d1pH",            
+    order_description: "Payment for ABC Fashion Shop",
+    currency_code: "LKR",
+    custom_1: "customYuDSFk5Z1O",
+    custom_2: "test2",
+    customer_email: "testmail@gmail.com",
+    customer_first_name: "Shakthi",
+    customer_last_name: "Elon",
+    customer_mobile_phone: "07XXXXXXXX",
+    customer_phone: "07XXXXXXXX",
+    billing_address_city: "Vavuniya",
+    billing_address_company: "Pay Shop",
+    billing_address_country: "LKA",
+    billing_address_postcode: "43000",
+    billing_address_province: "North Province",
+    billing_address_street: "154",
+    billing_address_street2: "Koomankulam", 
+    shipping_address_city: "Colombo",
+    shipping_address_company: "Payable",
+    shipping_address_country: "LKA",
+    shipping_address_postcode: "43000",
+    shipping_address_province: "western province",
+    shipping_address_street: "Main street",
+    shipping_address_street2: "Temple road",
+    shipping_contact_email: "testshipmail@gmail.com",
+    shipping_contact_first_name: "Kumaran",
+    shipping_contact_last_name: "Test Lastname",
+    shipping_contact_mobile: "07XXXXXXXX",
+    shipping_contact_phone: "07XXXXXXXX",
+  };
+
    ````
 
-<b>3.</b> Communicate with PAYable SDK.
+<b>3.</b> Communicate with PAYable IPG JS.
 
-<b>3.1.</b> Submit your form json data into `payable.startPayment()`.
+<b>3.1.</b> Submit your payment request into `payable.startPayment()`.
 
 ```javascript
-payable.startPayment(form_jsondata);
+ payable.startPayment(payment);
 
 ```
 <b>3.2.</b> Payment related Error details.
@@ -136,15 +137,15 @@ You can get the error details from the `payable.onError`. Error will be field va
 
 ```javascript
    payable.onError = function onError(error) {
-        if (error.code === 3009) { // field validation error
-            error.fields.forEach((field) => {
-                console.log(field.error)
-            });
-        }
-        if (error.code === 3008) { // other common error
-            console.log(error.error)
-        }
-    };
+    if (error.code === 3009) { // field validation error
+      error.fields.forEach((field) => {
+        console.log(field.error)
+      });
+    }
+    if (error.code === 3008) {
+      console.log(error.error)
+    }
+  };
 
 ```
 
@@ -154,8 +155,8 @@ Once you connect to Payable Payment Gateway, You can listen to sdk with `payable
 
 ```javascript
    payable.onCompleted = function onCompleted(data) {
-        console.log("Payment Process Completed")
-    };
+    console.log("Payment Process Completed");
+  };
 
 ```
 
@@ -163,8 +164,8 @@ If the payment gateway dismissed you can get the connection status.
 
 ```javascript
    payable.onDismissed = function onDismissed() {
-        log("Payment Process Canceled");
-    };
+    console.log("Payment Process Canceled");
+  };
 
 ```
 
@@ -244,82 +245,6 @@ If the customer made the payment by VISA or MASTER credit/debit card, following 
 {
     "Status":200
 }
-```
-
-<hr> 
-
-##### Sample Code 
-
-```html
-<html>
-<head>
-    <title>ABC Fashion Shop</title>
-    <script src="https://sandboxipgsdk.payable.lk/sdk/v2/payable-checkout.js"></script>
-    <script>
-        window.addEventListener('load', function() {
-            payable.onCompleted = function onCompleted(data) {
-                console.log("Payment Process Completed");
-            };
-            payable.onDismissed = function onDismissed() {
-                log("Payment Process Canceled");
-            };
-            payable.onError = function onError(error) {
-                if (error.code === 3009) { // field validation error
-                    error.fields.forEach((field) => {
-                        console.log(field.error)
-                    });
-                }
-                if (error.code === 3008) { 
-                    console.log(error.error)
-                }
-            };
-        });
-        function returnForm() {
-            var payment = {                
-                cancel_url: "https://yoursite.com/payment/cancel",
-                return_url: "https://yoursite.com/payment/return",
-                notify_url: "https://yoursite.com/payment/nortify",
-                merchant_key: "D7XXXXXXXXX",               
-                check_value: "C6FXXXXXXXXXXXXXXXXXXXXXX",
-                amount: "59.91",
-                invoice_id: "INVvw5EA0d1pH",            
-                order_description: "Payment for ABC Fashion Shop",
-                currency_code: "LKR",
-                custom_1: "customYuDSFk5Z1O",
-                custom_2: "test2",
-                customer_email: "testmail@gmail.com",
-                customer_first_name: "Shakthi",
-                customer_last_name: "Elon",
-                customer_mobile_phone: "07XXXXXXXX",
-                customer_phone: "07XXXXXXXX",
-                billing_address_city: "Vavuniya",
-                billing_address_company: "Pay Shop",
-                billing_address_country: "LKA",
-                billing_address_postcode: "43000",
-                billing_address_province: "North Province",
-                billing_address_street: "154",
-                billing_address_street2: "Koomankulam", 
-                shipping_address_city: "Colombo",
-                shipping_address_company: "Payable",
-                shipping_address_country: "LKA",
-                shipping_address_postcode: "43000",
-                shipping_address_province: "western province",
-                shipping_address_street: "Main street",
-                shipping_address_street2: "Temple road",
-                shipping_contact_email: "testshipmail@gmail.com",
-                shipping_contact_first_name: "Kumaran",
-                shipping_contact_last_name: "Test Lastname",
-                shipping_contact_mobile: "07XXXXXXXX",
-                shipping_contact_phone: "07XXXXXXXX",
-            };
-            payable.startPayment(payment);
-        }
-    </script>
-</head>
-<body>
-    <button onclick="returnForm()" name="btnpay">PAY Now</button>
-</body>
-</html>
 ```
 
 
