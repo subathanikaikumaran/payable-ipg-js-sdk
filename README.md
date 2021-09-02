@@ -81,7 +81,7 @@ Format:
 
 `UPPERCASE(SHA512[<merchant_key>|<invoice_id>|<amount>|<currency_code>|UPPERCASE(SHA512[<merchant_Token>])])`
 
-<b>2.3.</b> Sampe Code :
+<b>2.3.</b> Sample Code :
 ````javascript
 const payment = {
     cancel_url: "https://yoursite.com/payment/cancel",
